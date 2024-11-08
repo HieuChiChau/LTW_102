@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Hàng Hóa</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'qlkhohang/css/dshanghoa.css' %}">
+</head>
+<body>
+    <h1>Danh Sách Hàng Hóa</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô Tả</th>
+                <th>Đơn Vị Tính</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hanghoa in hanghoa_list %}
+            <tr>
+                <td>{{ hanghoa.id }}</td>
+                <td>{{ hanghoa.ten }}</td>
+                <td>{{ hanghoa.mota }}</td>
+                <td>{{ hanghoa.don_vi_tinh }}</td>
+                <td>
+                    <!-- Link đến trang chỉnh sửa -->
+                    <a href="{% url 'sua_hanghoa' id_hanghoa=hanghoa.id %}">Sửa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><a href="{% url 'them_hanghoa' %}">Thêm Mới Hàng Hóa</a></p>
+</body>
+</html>
